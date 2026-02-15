@@ -242,7 +242,8 @@ async function main() {
     combineSchemas(schemas);
     apiRoutes(missingRoutes);
 
-    fs.writeFileSync(openapiPath, JSON.stringify(specification, null, 4).replaceAll("#/definitions", "#/components/schemas") /*.replaceAll("bigint", "number")*/);
+    //See table (bigint is basically int64) https://swagger.io/docs/specification/v3_0/data-models/data-types/#numbers
+    fs.writeFileSync(openapiPath, JSON.stringify(specification, null, 4).replaceAll("#/definitions", "#/components/schemas").replaceAll("bigint", "integer"));
     console.log("Wrote OpenAPI specification to", openapiPath);
     const elapsedMs = Number(totalSw.elapsed().totalMilliseconds + "." + totalSw.elapsed().microseconds);
     console.log(
