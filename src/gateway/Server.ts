@@ -73,7 +73,7 @@ export class Server {
                     } else {
                         const auth = req.headers.authorization.split(" ");
                         const sess = await checkToken(auth[1]);
-                        if ((BigInt(sess.user.rights) & BigInt(Rights.FLAGS.OPERATOR)) === BigInt(0)) {
+                        if (!sess.user.rights.has(Rights.FLAGS.OPERATOR)) {
                             return res.writeHead(401).end("Unauthorized");
                         }
                     }

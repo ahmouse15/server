@@ -18,6 +18,7 @@
 
 import { route } from "@spacebar/api";
 import { Request, Response, Router } from "express";
+import { UserFlags } from "@spacebar/schemas";
 
 const router = Router({ mergeParams: true });
 

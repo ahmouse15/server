@@ -17,9 +17,9 @@
 */
 
 import { Request } from "express";
-import { Column, Entity, FindOneOptions, JoinColumn, OneToMany, OneToOne } from "typeorm";
+import { Column, Entity, FindOneOptions, JoinColumn, OneToMany, OneToOne, ValueTransformer } from "typeorm";
 import { Channel, Config, Email, FieldErrors, Snowflake, trimSpecial } from "..";
-import { Random } from "../util";
+import { BitField, Random, Rights } from "../util";
 import { BaseClass } from "./BaseClass";
 import { ConnectedAccount } from "./ConnectedAccount";
 import { Member } from "./Member";
@@ -36,8 +36,19 @@ import {
     PrivateUserProjection,
     PublicUser,
     PublicUserProjection,
+    UserFlags,
     UserPrivate,
 } from "@spacebar/schemas";
+
+const userflagsTransform: ValueTransformer = {
+    to: (entityValue: UserFlags) => entityValue.valueOf(),
+    from: (databaseValue: string): UserFlags => new UserFlags(databaseValue),
+};
+
+const rightsTransform: ValueTransformer = {
+    to: (entityValue: Rights) => entityValue.valueOf(),
+    from: (databaseValue: string): Rights => new Rights(databaseValue),
+};
 
 @Entity({
     name: "users",
@@ -123,20 +134,20 @@ export class User extends BaseClass {
     @Column({ nullable: true, select: false })
     email?: string; // email of the user
 
-    @Column({ type: "bigint" })
-    flags: number = 0; // UserFlags // TODO: generate
+    @Column({ type: "bigint", transformer: userflagsTransform })
+    flags: UserFlags; // UserFlags // TODO: generate
 
-    @Column({ type: "bigint" })
-    public_flags: number = 0;
+    @Column({ type: "bigint", transformer: userflagsTransform })
+    public_flags: UserFlags;
 
-    @Column({ type: "bigint" })
+    @Column()
     purchased_flags: number = 0;
 
     @Column()
     premium_usage_flags: number = 0;
 
-    @Column({ type: "bigint" })
-    rights: string;
+    @Column({ type: "bigint", transformer: rightsTransform })
+    rights: Rights;
 
     @OneToMany(() => Session, (session: Session) => session.user)
     sessions: Session[];

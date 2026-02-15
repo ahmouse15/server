@@ -17,12 +17,13 @@
 */
 
 import { User } from "../entities";
+import { UserFlags } from "@spacebar/schemas";
 
 export class MinimalPublicUserDTO {
     avatar?: string | null;
     discriminator: string;
     id: string;
-    public_flags: number;
+    public_flags: UserFlags;
     username: string;
     badge_ids?: string[] | null;
 

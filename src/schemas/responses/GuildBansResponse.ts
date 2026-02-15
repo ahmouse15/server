@@ -16,6 +16,8 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+import { UserFlags } from "@spacebar/schemas";
+
 export interface GuildBansResponse {
     reason: string | null;
     user: {
@@ -23,6 +25,6 @@ export interface GuildBansResponse {
         discriminator: string;
         id: string;
         avatar: string | null;
-        public_flags: number;
+        public_flags: UserFlags;
     };
 }

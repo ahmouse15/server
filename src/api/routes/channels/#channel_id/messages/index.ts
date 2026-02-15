@@ -65,6 +65,7 @@ import {
     ReadStateType,
     RelationshipType,
     ChannelType,
+    UserFlags,
 } from "@spacebar/schemas";
 
 const router: Router = Router({ mergeParams: true });
@@ -200,7 +201,7 @@ router.get(
                     id: "4",
                     discriminator: "0000",
                     username: "Spacebar Ghost",
-                    public_flags: 0,
+                    public_flags: new UserFlags(0),
                 });
             x.attachments?.forEach((y: Attachment) => {
                 // dynamically set attachment proxy_url in case the endpoint changed

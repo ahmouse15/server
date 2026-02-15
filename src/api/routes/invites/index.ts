@@ -90,12 +90,12 @@ router.post(
             throw DiscordApiErrors.USER_BANNED;
         }
 
-        if ((BigInt(public_flags) & UserFlags.FLAGS.QUARANTINED) === UserFlags.FLAGS.QUARANTINED) {
+        if (public_flags.has(UserFlags.FLAGS.QUARANTINED)) {
             console.log(`[Invite] User ${req.user_id} tried to join guild ${guild_id} but is quarantined.`);
             throw DiscordApiErrors.UNKNOWN_INVITE;
         }
 
-        if (features.includes("INTERNAL_EMPLOYEE_ONLY") && (public_flags & 1) !== 1) {
+        if (features.includes("INTERNAL_EMPLOYEE_ONLY") && !public_flags.has(UserFlags.FLAGS.DISCORD_EMPLOYEE)) {
             console.log(`[Invite] User ${req.user_id} tried to join guild ${guild_id} but is not staff.`);
             throw new HTTPError("Only intended for the staff of this instance.", 401);
         }

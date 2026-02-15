@@ -1587,7 +1587,7 @@
                                 ]
                             },
                             "public_flags": {
-                                "type": "integer"
+                                "$ref": "#/components/schemas/UserFlags"
                             }
                         },
                         "additionalProperties": false,
@@ -2748,7 +2748,7 @@
                         "type": "string"
                     },
                     "public_flags": {
-                        "type": "integer"
+                        "$ref": "#/components/schemas/UserFlags"
                     },
                     "accent_color": {
                         "type": "integer"
@@ -2800,7 +2800,7 @@
                         "type": "string"
                     },
                     "flags": {
-                        "type": "integer"
+                        "$ref": "#/components/schemas/UserFlags"
                     },
                     "verified": {
                         "type": "boolean"
@@ -2834,7 +2834,7 @@
                         "type": "string"
                     },
                     "public_flags": {
-                        "type": "integer"
+                        "$ref": "#/components/schemas/UserFlags"
                     },
                     "accent_color": {
                         "type": "integer"
@@ -2939,7 +2939,7 @@
                         "type": "string"
                     },
                     "flags": {
-                        "type": "integer"
+                        "$ref": "#/components/schemas/UserFlags"
                     },
                     "verified": {
                         "type": "boolean"
@@ -2973,7 +2973,7 @@
                         "type": "string"
                     },
                     "public_flags": {
-                        "type": "integer"
+                        "$ref": "#/components/schemas/UserFlags"
                     },
                     "accent_color": {
                         "type": "integer"
@@ -3645,7 +3645,7 @@
                             "type": "string"
                         },
                         "public_flags": {
-                            "type": "integer"
+                            "$ref": "#/components/schemas/UserFlags"
                         }
                     },
                     "required": [
@@ -8048,12 +8048,10 @@
                         "type": "string"
                     },
                     "flags": {
-                        "type": "integer",
-                        "default": 0
+                        "$ref": "#/components/schemas/UserFlags"
                     },
                     "public_flags": {
-                        "type": "integer",
-                        "default": 0
+                        "$ref": "#/components/schemas/UserFlags"
                     },
                     "purchased_flags": {
                         "type": "integer",
@@ -8064,7 +8062,7 @@
                         "default": 0
                     },
                     "rights": {
-                        "type": "string"
+                        "$ref": "#/components/schemas/Rights"
                     },
                     "sessions": {
                         "type": "array",
@@ -8172,6 +8170,28 @@
                     "username",
                     "verified",
                     "webauthn_enabled"
+                ]
+            },
+            "UserFlags": {
+                "type": "object",
+                "properties": {
+                    "bitfield": {
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "bitfield"
+                ]
+            },
+            "Rights": {
+                "type": "object",
+                "properties": {
+                    "bitfield": {
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "bitfield"
                 ]
             },
             "Session": {
@@ -11535,7 +11555,7 @@
                         "type": "string"
                     },
                     "public_flags": {
-                        "type": "integer"
+                        "$ref": "#/components/schemas/UserFlags"
                     },
                     "accent_color": {
                         "type": "integer"
@@ -12642,7 +12662,7 @@
                         "nullable": true
                     },
                     "public_flags": {
-                        "type": "integer"
+                        "$ref": "#/components/schemas/UserFlags"
                     }
                 },
                 "required": [
@@ -13167,7 +13187,7 @@
                         "type": "string"
                     },
                     "public_flags": {
-                        "type": "integer"
+                        "$ref": "#/components/schemas/UserFlags"
                     },
                     "username": {
                         "type": "string"

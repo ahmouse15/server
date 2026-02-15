@@ -46,8 +46,8 @@ interface UserEntityPleaseRewriteThankYou {
     disabled: boolean;
     deleted: boolean;
     email?: string;
-    flags: number;
-    public_flags: number;
+    flags: UserFlags;
+    public_flags: UserFlags;
     purchased_flags: number;
     premium_usage_flags: number;
     rights: string;
@@ -77,7 +77,7 @@ export interface PartialUser {
     system?: boolean;
     banner?: string | null;
     accent_color?: number | null;
-    public_flags?: number;
+    public_flags?: UserFlags;
 }
 
 export interface AvatarDecorationData {

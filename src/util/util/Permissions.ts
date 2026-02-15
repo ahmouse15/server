@@ -148,7 +148,7 @@ export class Permissions extends BitField {
         guild,
         channel,
     }: {
-        user: { id: string; roles: string[]; communication_disabled_until: Date | null; flags: number };
+        user: { id: string; roles: string[]; communication_disabled_until: Date | null; flags: UserFlags };
         guild: { id: string; owner_id: string; roles: Role[] };
         channel?: {
             overwrites?: ChannelPermissionOverwrite[];
@@ -203,7 +203,7 @@ export class Permissions extends BitField {
                 });
             }
         }
-        if ((BigInt(user.flags) & UserFlags.FLAGS.QUARANTINED) === UserFlags.FLAGS.QUARANTINED) {
+        if (user.flags.has(UserFlags.FLAGS.QUARANTINED)) {
             permission = permission & Permissions.QUARANTINED_MASK.bitfield;
         }
 

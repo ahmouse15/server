@@ -1646,7 +1646,7 @@
                         ]
                     },
                     "public_flags": {
-                        "type": "integer"
+                        "$ref": "#/definitions/UserFlags"
                     }
                 },
                 "additionalProperties": false,
@@ -2884,7 +2884,7 @@
                 "type": "string"
             },
             "public_flags": {
-                "type": "integer"
+                "$ref": "#/definitions/UserFlags"
             },
             "accent_color": {
                 "type": "integer"
@@ -2938,7 +2938,7 @@
                 "type": "string"
             },
             "flags": {
-                "type": "integer"
+                "$ref": "#/definitions/UserFlags"
             },
             "verified": {
                 "type": "boolean"
@@ -2972,7 +2972,7 @@
                 "type": "string"
             },
             "public_flags": {
-                "type": "integer"
+                "$ref": "#/definitions/UserFlags"
             },
             "accent_color": {
                 "type": "integer"
@@ -3082,7 +3082,7 @@
                 "type": "string"
             },
             "flags": {
-                "type": "integer"
+                "$ref": "#/definitions/UserFlags"
             },
             "verified": {
                 "type": "boolean"
@@ -3116,7 +3116,7 @@
                 "type": "string"
             },
             "public_flags": {
-                "type": "integer"
+                "$ref": "#/definitions/UserFlags"
             },
             "accent_color": {
                 "type": "integer"
@@ -3851,7 +3851,7 @@
                     "type": "string"
                 },
                 "public_flags": {
-                    "type": "integer"
+                    "$ref": "#/definitions/UserFlags"
                 }
             },
             "required": [
@@ -8538,12 +8538,10 @@
                 "type": "string"
             },
             "flags": {
-                "type": "integer",
-                "default": 0
+                "$ref": "#/definitions/UserFlags"
             },
             "public_flags": {
-                "type": "integer",
-                "default": 0
+                "$ref": "#/definitions/UserFlags"
             },
             "purchased_flags": {
                 "type": "integer",
@@ -8554,7 +8552,7 @@
                 "default": 0
             },
             "rights": {
-                "type": "string"
+                "$ref": "#/definitions/Rights"
             },
             "sessions": {
                 "type": "array",
@@ -8663,6 +8661,32 @@
             "username",
             "verified",
             "webauthn_enabled"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+    },
+    "UserFlags": {
+        "type": "object",
+        "properties": {
+            "bitfield": {
+                "type": "bigint"
+            }
+        },
+        "additionalProperties": false,
+        "required": [
+            "bitfield"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+    },
+    "Rights": {
+        "type": "object",
+        "properties": {
+            "bitfield": {
+                "type": "bigint"
+            }
+        },
+        "additionalProperties": false,
+        "required": [
+            "bitfield"
         ],
         "$schema": "http://json-schema.org/draft-07/schema#"
     },
@@ -12202,7 +12226,7 @@
                 "type": "string"
             },
             "public_flags": {
-                "type": "integer"
+                "$ref": "#/definitions/UserFlags"
             },
             "accent_color": {
                 "type": "integer"
@@ -13411,7 +13435,7 @@
                 ]
             },
             "public_flags": {
-                "type": "integer"
+                "$ref": "#/definitions/UserFlags"
             }
         },
         "additionalProperties": false,
@@ -13975,7 +13999,7 @@
                 "type": "string"
             },
             "public_flags": {
-                "type": "integer"
+                "$ref": "#/definitions/UserFlags"
             },
             "username": {
                 "type": "string"

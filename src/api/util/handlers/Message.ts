@@ -51,7 +51,7 @@ import {
 } from "@spacebar/util";
 import { HTTPError } from "lambert-server";
 import { In, Or, Equal, IsNull } from "typeorm";
-import { ChannelType, Embed, EmbedType, MessageCreateAttachment, MessageCreateCloudAttachment, MessageCreateSchema, MessageType, Reaction } from "@spacebar/schemas";
+import { ChannelType, Embed, EmbedType, MessageCreateAttachment, MessageCreateCloudAttachment, MessageCreateSchema, MessageType, Reaction, UserFlags } from "@spacebar/schemas";
 const allow_empty = false;
 // TODO: check webhook, application, system author, stickers
 // TODO: embed gifs/videos/images
@@ -196,7 +196,7 @@ export async function handleMessage(opts: MessageOptions): Promise<Message> {
                 username: message.webhook.name,
                 discriminator: "0000",
                 avatar: message.webhook.avatar,
-                public_flags: 0,
+                public_flags: new UserFlags(0),
                 premium: false,
                 premium_type: 0,
                 bot: true,

@@ -17,6 +17,7 @@
 */
 
 import { route } from "@spacebar/api";
+import { UserFlags } from "@spacebar/schemas";
 import { Snowflake, User, Message, Member, Channel, Permissions, timePromise, NewUrlUserSignatureData, Stopwatch, Attachment } from "@spacebar/util";
 import { Request, Response, Router } from "express";
 import { In, LessThan, FindOptionsWhere } from "typeorm";
@@ -76,7 +77,7 @@ router.get(
         const visibleChannels = channels.filter((c) => {
             const member = memberships.find((m) => m.guild_id === c.guild_id)!;
             return Permissions.finalPermission({
-                user: { id: member.id, roles: member.roles.map((r) => r.id), communication_disabled_until: member.communication_disabled_until, flags: 0 },
+                user: { id: member.id, roles: member.roles.map((r) => r.id), communication_disabled_until: member.communication_disabled_until, flags: new UserFlags(0) },
                 guild: { id: member.guild.id, owner_id: member.guild.owner_id!, roles: member.roles },
                 channel: c,
             }).has("VIEW_CHANNEL");
